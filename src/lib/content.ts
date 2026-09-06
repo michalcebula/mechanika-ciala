@@ -9,7 +9,7 @@ export const fallback = {
   booksyUrl: 'https://booksy.com/pl-pl/181396_mechanika-ciala-fizjoterapia-pl-eng_fizjoterapia_8820_krakow',
   googleUrl: 'https://share.google/gPZM8yGCFEF1AZ5pD',
   facebookUrl: 'https://www.facebook.com/MechanikaCialaFizjoterapia/',
-  heroImage: `${import.meta.env.BASE_URL}images/terapia.jpg`, portraitImage: `${import.meta.env.BASE_URL}images/kamil.jpg`, clinicImage: `${import.meta.env.BASE_URL}images/gabinet.jpg`,
+  heroImage: `${import.meta.env.BASE_URL}/images/terapia.jpg`, portraitImage: `${import.meta.env.BASE_URL}/images/kamil.jpg`, clinicImage: `${import.meta.env.BASE_URL}/images/gabinet.jpg`,
   services: [
     { title: 'Ból pleców i napięcie', description: 'Gdy dolegliwości przeszkadzają w pracy, odpoczynku lub codziennym ruchu.' },
     { title: 'Ograniczona ruchomość', description: 'Gdy chcesz przyjrzeć się ograniczeniom i zadbać o swobodniejszy ruch.' },
