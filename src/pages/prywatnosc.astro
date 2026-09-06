@@ -1,0 +1,6 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {getContent} from '../lib/content';
+const c = await getContent();
+---
+<Layout title="Prywatność i cookies" description="Informacje o prywatności na stronie Mechanika Ciała."><article class="shell section prose"><p class="eyebrow">PRYWATNOŚĆ</p><h1>Prywatność<br />i cookies.</h1>{c.privacyApproved&&c.privacyText.length ? c.privacyText.map(p=><p>{p}</p>) : <><p class="notice">Wersja robocza. Pełna polityka prywatności wymaga uzupełnienia i zatwierdzenia przez właściciela przed publicznym uruchomieniem strony.</p><h2>Ta wersja strony</h2><p>Nie zawiera formularza kontaktowego, narzędzi analitycznych ani reklamowych. Kod strony nie zapisuje cookies ani danych w pamięci przeglądarki. Zdjęcia i fonty są serwowane lokalnie.</p><h2>Serwisy zewnętrzne</h2><p>Booksy, Google i Facebook otwierają się dopiero po kliknięciu odpowiedniego odnośnika. Korzystanie z tych serwisów podlega ich własnym zasadom prywatności. Mapa i kalendarz nie są automatycznie osadzane.</p><h2>Przed publikacją</h2><p>Należy określić administratora danych, kontakt, zasady przetwarzania korespondencji, logów hostingu, okresy przechowywania i prawa osób. Ostateczny tekst musi odpowiadać konfiguracji hostingu oraz rzeczywistym procesom gabinetu.</p></>}</article></Layout>
