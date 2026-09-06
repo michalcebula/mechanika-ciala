@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://michalcebula.github.io'
+  site: 'https://michalcebula.github.io',
+  base: '/mechanika-ciala',
 });
