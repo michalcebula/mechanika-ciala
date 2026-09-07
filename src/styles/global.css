@@ -78,3 +78,13 @@
 .footer-booksy img{width:24px;height:24px;object-fit:contain}
 .footer-booksy:hover{background:var(--sage)}
 }
+
+@layer components {
+.help-intro{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;margin-bottom:40px}
+.help-copy p,.cooperation-copy p{font-size:1.0625rem;line-height:1.75}
+.help-copy p+p,.cooperation-copy p+p{margin-top:18px}
+.cooperation .text-link span{color:#ffa477}
+}
+@layer responsive {
+@media(max-width:760px){.help-intro{grid-template-columns:1fr;gap:24px;margin-bottom:28px}.help-copy p,.cooperation-copy p{font-size:1rem}}
+}
