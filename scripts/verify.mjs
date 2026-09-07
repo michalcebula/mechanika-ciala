@@ -1,5 +1,7 @@
 import {readFile,access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import config from '../astro.config.mjs';
+const base = (config.base || '/').replace(/\/$/, '') + '/';
 const pages=['index.html','o-mnie/index.html','kontakt/index.html','prywatnosc/index.html','404.html'];
 for(const path of pages){
  const html=await readFile('dist/'+path,'utf8');
@@ -10,8 +12,9 @@ for(const path of pages){
  assert(!html.includes('<iframe'), 'No third-party embeds before consent');
  assert(!html.includes('Ponad 300') && !html.includes('+48 123 456 789'),'No invented data');
  for(const [,url] of html.matchAll(/(?:src|href)="(\/[^"#]*)"/g)){
-  const clean=url.split('#')[0]; if(!clean)continue;
-  await access('dist'+clean+(clean.endsWith('/')?'index.html':''));
+  assert(url.startsWith(base), `URL must use configured base ${base}: ${url}`);
+  const clean=url.slice(base.length).split(/[?#]/)[0];
+  await access('dist/'+clean+(!clean || clean.endsWith('/')?'index.html':''));
  }
 }
 for(const name of ['kamil','terapia','gabinet','terapia-szyi']){

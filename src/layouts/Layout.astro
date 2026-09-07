@@ -1,11 +1,13 @@
 ---
+import { withBase } from '../lib/paths';
 import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import { getContent } from '../lib/content';
 const c = await getContent();
 const {title, description = c.heroDescription} = Astro.props;
 const path = Astro.url.pathname;
-const nav = [{url:'/',label:'Start'},{url:'/#jak-pomagam',label:'Jak pomagam'},{url:'/o-mnie/',label:'O mnie'},{url:'/kontakt/',label:'Kontakt'}];
+const isCurrentPage = (url: string) => path.replace(/\/$/, '') === url.replace(/\/$/, '');
+const nav = [{url:'/',label:'Start'},{url:'/#jak-pomagam',label:'Jak pomagam'},{url:'/o-mnie/',label:'O mnie'},{url:'/kontakt/',label:'Kontakt'}].map(n => ({ ...n, url: withBase(n.url) }));
 const canonical = Astro.site ? new URL(path,Astro.site).href : undefined;
 const ready = Boolean(Astro.site && c.privacyApproved);
 ---
@@ -14,7 +16,7 @@ const ready = Boolean(Astro.site && c.privacyApproved);
   <head>
     <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} | Mechanika Ciała</title><meta name="description" content={description} />
-    <meta name="theme-color" content="#123c33" /><link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#123c33" /><link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <meta name="robots" content={ready ? 'index,follow' : 'noindex,nofollow'} />
     {canonical && <link rel="canonical" href={canonical} />}
     <meta property="og:title" content={`${title} | Mechanika Ciała`} /><meta property="og:description" content={description} />
@@ -24,15 +26,15 @@ const ready = Boolean(Astro.site && c.privacyApproved);
   <body>
     <a class="skip" href="#tresc">Przejdź do treści</a>
     <header class="header"><div class="shell nav-wrap">
-      <a class="brand" href="/" aria-label="Mechanika Ciała — strona główna">MECHANIKA CIAŁA<span>KAMIL SZUWALSKI · FIZJOTERAPIA</span></a>
-      <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a href={n.url} aria-current={path===n.url?'page':undefined}>{n.label}</a>)}</nav>
+      <a class="brand" href={withBase('/')} aria-label="Mechanika Ciała — strona główna">MECHANIKA CIAŁA<span>KAMIL SZUWALSKI · FIZJOTERAPIA</span></a>
+      <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}</nav>
       <a class="button nav-cta" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a>
-      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a href={n.url}>{n.label}</a>)}<a href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę ↗</a></nav></details>
+      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę ↗</a></nav></details>
     </div></header>
     <main id="tresc"><slot /></main>
     <footer class="footer"><div class="shell">
       <div class="footer-top"><div><p class="eyebrow light">TWÓJ KOLEJNY KROK</p><h2>Zadbaj o swobodę<br />swojego ruchu.</h2><p>Wybierz dogodny termin wizyty w Booksy.</p></div><a class="button cream" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a></div>
-      <div class="footer-bottom"><div class="brand">MECHANIKA CIAŁA<span>Kamil Szuwalski · Fizjoterapia</span></div><div><p>{c.location}</p>{c.address&&<p>{c.address}</p>}{c.phone&&<a href={`tel:${c.phone.replace(/\s/g,'')}`}>{c.phone}</a>}{c.email&&<a href={`mailto:${c.email}`}>{c.email}</a>}</div><div class="footer-links"><a href={c.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href={c.googleUrl} target="_blank" rel="noopener noreferrer">Wizytówka Google ↗</a><a href="/prywatnosc/">Prywatność i cookies</a></div></div>
+      <div class="footer-bottom"><div class="brand">MECHANIKA CIAŁA<span>Kamil Szuwalski · Fizjoterapia</span></div><div><p>{c.location}</p>{c.address&&<p>{c.address}</p>}{c.phone&&<a href={`tel:${c.phone.replace(/\s/g,'')}`}>{c.phone}</a>}{c.email&&<a href={`mailto:${c.email}`}>{c.email}</a>}</div><div class="footer-links"><a href={c.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href={c.googleUrl} target="_blank" rel="noopener noreferrer">Wizytówka Google ↗</a><a href={withBase('/prywatnosc/')}>Prywatność i cookies</a></div></div>
       <div class="copyright">© {new Date().getFullYear()} Mechanika Ciała Kamil Szuwalski</div>
     </div></footer>
   </body>
