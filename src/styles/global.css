@@ -90,10 +90,25 @@
 }
 
 @layer components {
-.booksy-rating{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding-block:8px;border-bottom:1px solid transparent}
-.booksy-rating:hover{border-bottom-color:var(--green)}
+.trust-inner .booksy-rating{display:flex;align-items:center;flex-wrap:wrap;gap:12px;min-height:56px;padding:14px 20px;border:1px solid var(--green);background:var(--sage);color:var(--green);font-size:1rem;font-weight:700}
+.trust-inner .booksy-rating:hover{background:#d3dccb;text-decoration:underline;text-underline-offset:4px}
 .booksy-rating .rating-star{color:var(--orange);flex-shrink:0}
 .booksy-rating strong{font-size:1.65rem;font-weight:750;line-height:1.2;white-space:nowrap}
 .booksy-rating small{font-size:.95rem;font-weight:500;color:var(--muted)}
-.trust-inner .booksy-rating .rating-count{color:var(--ink);margin-left:0;font-size:.9rem;border-left:1px solid var(--line);padding-left:12px}
+.trust-inner .booksy-rating .rating-count{color:var(--ink);margin-left:0;font-size:1rem;border-left:1px solid var(--line);padding-left:12px}
+}
+
+@layer components {
+.service-grid>a.service:hover,.service-grid>a.service:focus-visible{background:var(--sage);border-color:var(--green)}
+}
+
+@layer components {
+.hero-booksy{min-height:44px;padding:10px 14px;gap:10px;font-size:.85rem}
+.hero-booksy img{width:24px;height:24px;object-fit:contain}
+.hero-approach-link{border-bottom-color:var(--line)}
+.hero-approach-link:hover{border-bottom-color:var(--green)}
+}
+
+@layer responsive {
+@media(max-width:760px){.trust-inner .booksy-rating{width:100%}}
 }
