@@ -4,8 +4,16 @@ import {getContent} from '../lib/content';
 const c = await getContent();
 ---
 <Layout title="O mnie — Kamil Szuwalski" description="Poznaj Kamila Szuwalskiego, fizjoterapeutę prowadzącego gabinet Mechanika Ciała w Krakowie na Zabłociu.">
-  <section class="hero about-hero shell"><div class="hero-copy"><p class="eyebrow">O MNIE</p><h1>{c.aboutTitle.split('\n').map(line=><span>{line}</span>)}</h1><div class="accent-line"></div><p class="lead">Kamil Szuwalski<br />Fizjoterapeuta</p></div><div class="hero-photo"><img src={c.portraitImage} alt="Kamil Szuwalski w swoim gabinecie" width="900" height="1100" fetchpriority="high" /></div></section>
-  <section class="section shell biography"><h2>Poznajmy się.</h2><div>{c.biography.map(p=><p class="lead">{p}</p>)}</div></section>
+  <section class="hero about-hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow">KILKA SŁÓW O MNIE</p>
+      <h1>{c.aboutTitle.split('\n').map(line=><span>{line}</span>)}</h1>
+      <div class="accent-line"></div>
+      <div class="about-introduction">{c.biography.map(p=><p>{p}</p>)}</div>
+    </div>
+    <div class="hero-photo"><img src={c.portraitImage} alt="Kamil Szuwalski w swoim gabinecie" width="900" height="1100" fetchpriority="high" /></div>
+  </section>
+  <section class="section shell biography"><h2>Jak pracuję:</h2><div>{c.workDescription.map(p=><p class="lead">{p}</p>)}</div></section>
   <section class="shell values">{[{title:'Rozmowa i badanie',text:'Przyglądamy się Twoim potrzebom, dolegliwościom i codziennej aktywności.'},{title:'Indywidualny plan',text:'Ustalamy kierunek pracy odpowiedni do Twoich celów i możliwości.'},{title:'Świadomy ruch',text:'Pracujemy nad sprawnością, która ma znaczenie w Twoim codziennym życiu.'}].map((v,i)=><article><span class="big-number">0{i+1}</span><h3>{v.title}</h3><p>{v.text}</p></article>)}</section>
   {c.credentials.length>0&&<section class="section shell"><p class="eyebrow">WIEDZA I DOŚWIADCZENIE</p><h2>Wykształcenie i certyfikaty</h2><div class="credentials">{c.credentials.map(item=><article><span>{item.year}</span><h3>{item.title}</h3><p>{item.institution}</p></article>)}</div></section>}
   <section class="section shell gallery"><img src={c.heroImage} alt="Terapia manualna w gabinecie Mechanika Ciała" width="900" height="800" loading="lazy" /><img src={c.clinicImage} alt="Wnętrze gabinetu Mechanika Ciała" width="1080" height="810" loading="lazy" /></section>

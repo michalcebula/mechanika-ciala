@@ -6,6 +6,7 @@ export const siteSettings=defineType({name:'siteSettings',title:'Treści strony'
  text('name','Nazwa firmy'),text('person','Imię i nazwisko'),
  text('heroTitle','Nagłówek główny (nowa linia dzieli wiersze)','text'),text('heroDescription','Opis strony głównej','text'),
  text('aboutTitle','Nagłówek O mnie','text'),defineField({name:'biography',title:'Biografia — akapity',type:'array',of:[{type:'text'}]}),
+ defineField({name:'workDescription',title:'Jak pracuję — akapity',type:'array',of:[{type:'text'}]}),
  text('location','Lokalizacja'),text('address','Pełny adres'),text('phone','Telefon'),text('email','E-mail'),
  ...['booksyUrl','googleUrl','facebookUrl'].map(name=>defineField({name,title:name,type:'url',validation:Rule=>Rule.uri({scheme:['https']})})),
  image('heroImage','Zdjęcie główne'),image('portraitImage','Portret Kamila'),image('clinicImage','Gabinet'),
