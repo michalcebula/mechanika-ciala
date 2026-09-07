@@ -21,3 +21,38 @@
 @media(max-width:430px){.service-grid,.gallery{grid-template-columns:1fr}.hero-photo{height:400px}.service{min-height:270px}.number{margin-bottom:22px}.brand{font-size:.93rem}.brand span{font-size:.55rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.desktop-nav a{transition:none}.button:hover{transform:none}}
 }
+
+@layer components {
+.contact-hub{padding-block:36px 48px}
+.contact-heading{margin-bottom:28px}
+.contact-heading .eyebrow{margin-bottom:12px}
+.contact-heading h1{font-size:clamp(2rem,3.2vw,3.25rem);line-height:1.12;letter-spacing:-.05em}
+.contact-overview{display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid var(--line);padding-top:24px}
+.contact-details,.contact-location{min-width:0}
+.contact-person{font-weight:700;font-size:1.05rem}
+.contact-person span{display:block;color:var(--muted);font-size:.85rem;font-weight:500}
+.contact-direct{margin-top:14px}
+.contact-direct>a{display:grid;grid-template-columns:1fr auto;position:relative;gap:4px 12px;padding-block:12px;border-bottom:1px solid var(--line)}
+.contact-direct .small-label{color:var(--muted)}
+.contact-direct strong{grid-column:1;font-size:clamp(1.1rem,1.7vw,1.5rem);font-weight:650;overflow-wrap:anywhere}
+.contact-arrow{grid-column:2;grid-row:1/3;align-self:center;color:var(--orange);font-size:1.3rem}
+.contact-direct>a:hover{border-bottom-color:var(--green)}
+.contact-socials{display:flex;gap:32px;margin-block:6px 12px}
+.contact-socials .text-link{font-weight:650}
+.contact-reservation .button{padding:14px 20px;min-height:48px}
+.contact-reservation p{font-size:.8rem;color:var(--muted);margin-top:8px}
+.contact-location{border-left:1px solid var(--line);padding-left:32px}
+.contact-address .small-label{color:var(--muted);margin-bottom:6px}
+.contact-address h2{font-size:1.25rem;letter-spacing:-.025em;line-height:1.4}
+.contact-address>p:last-child{font-size:.9rem;margin-top:3px}
+.contact-map{display:block;width:100%;height:230px;border:1px solid var(--line);background:var(--sage);margin-top:14px}
+.contact-location>.text-link{font-size:.85rem}
+}
+@layer responsive {
+@media(max-width:760px){
+.contact-hub{padding-block:24px 32px}.contact-heading{margin-bottom:18px}
+.contact-heading h1{font-size:2rem}.contact-overview{grid-template-columns:1fr;gap:24px;padding-top:16px}
+.contact-location{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:20px}
+.contact-map{height:200px}.contact-reservation .button{width:100%}
+}
+}

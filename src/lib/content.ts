@@ -6,7 +6,7 @@ export const fallback = {
   heroDescription: 'Fizjoterapia i terapia manualna na krakowskim Zabłociu. Zadbaj o swobodę ruchu — na treningu i na co dzień.',
   aboutTitle: 'Ciało to system.\nZacznijmy od zrozumienia.',
   biography: ['Nazywam się Kamil Szuwalski. Jestem fizjoterapeutą i prowadzę gabinet Mechanika Ciała w XXS Gym na krakowskim Zabłociu.', 'Podczas wizyty rozmawiamy o Twoich dolegliwościach i celach. To punkt wyjścia do indywidualnego planu pracy nad sprawnością i codziennym ruchem.'],
-  location: 'XXS Gym · Kraków, Zabłocie', address: '', phone: '', email: '',
+  location: 'XXS Gym · Kraków, Zabłocie', address: 'Zabłocie 24, 30-522 Kraków', phone: '+48 662 927 063', email: 'kamil.szuwal@gmail.com',
   booksyUrl: 'https://booksy.com/pl-pl/181396_mechanika-ciala-fizjoterapia-pl-eng_fizjoterapia_8820_krakow',
   googleUrl: 'https://share.google/gPZM8yGCFEF1AZ5pD',
   facebookUrl: 'https://www.facebook.com/MechanikaCialaFizjoterapia/',

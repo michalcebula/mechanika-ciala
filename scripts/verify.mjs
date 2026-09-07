@@ -19,7 +19,13 @@ for(const path of pages){
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1,`one h1: ${path}`);
  assert.match(html,/<meta name="description"/);
  assert.match(html,/id="tresc"/);
- assert(!html.includes('<iframe'), 'No third-party embeds before consent');
+ const embeds=[...html.matchAll(/<iframe\b[^>]*>/g)].map(m=>m[0]);
+ if(path==='kontakt/index.html') {
+  assert.equal(embeds.length,1,'One contact location map');
+  assert.match(embeds[0],/src="https:\/\/www\.google\.com\/maps\?/);
+  assert.match(html,/href="tel:\+48662927063"/);
+  assert.match(html,/href="mailto:kamil\.szuwal@gmail\.com"/);
+ } else assert.equal(embeds.length,0,'No embeds outside contact page');
  assert(!html.includes('Ponad 300') && !html.includes('+48 123 456 789'),'No invented data');
  for(const [,url] of html.matchAll(/(?:src|href)="(\/[^"#]*)"/g)){
   assert(url.startsWith(base), `URL must use configured base ${base}: ${url}`);
@@ -32,7 +38,7 @@ for(const name of ['kamil','terapia','gabinet','terapia-szyi']){
  assert(data.length>10000 && data[0]===255 && data[1]===216,`Valid JPEG: ${name}`);
 }
 await access('dist/robots.txt');await access('dist/sitemap.xml');
-console.log('PASS: 5 pages, local links/assets, Polish language, headings, metadata, JPEGs, privacy-safe embeds.');
+console.log('PASS: 5 pages, local links/assets, Polish language, headings, metadata, JPEGs, contact links and map.');
 
 const origin='https://example.com';
 for(const prefix of ['/', '/mechanika-ciala/']) {
