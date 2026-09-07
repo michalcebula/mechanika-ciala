@@ -13,13 +13,13 @@ const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`XXS Gym ${ad
   <section class="shell contact-hub" aria-labelledby="contact-title">
     <div class="contact-heading">
       <p class="eyebrow">KONTAKT / KRAKÓW · ZABŁOCIE</p>
-      <h1 id="contact-title">Porozmawiajmy.<br />Do zobaczenia w gabinecie.</h1>
+      <h1 id="contact-title">Napisz, zadzwoń lub umów wizytę.<br />Do zobaczenia w gabinecie!</h1>
     </div>
     <div class="contact-overview">
       <div class="contact-details">
         <div class="contact-person-row">
           <p class="contact-person">Kamil Szuwalski <span>Fizjoterapeuta · Mechanika Ciała</span></p>
-          <a class="button contact-booksy" href={c.booksyUrl} target="_blank" rel="noopener noreferrer"><img src={withBase('/images/booksy.png')} width="24" height="24" alt="" />Umów w Booksy</a>
+          <a class="button contact-booksy" href={c.booksyUrl} target="_blank" rel="noopener noreferrer"><img src={withBase('/images/booksy.png')} width="24" height="24" alt="" />Umów się przez Booksy</a>
         </div>
         <div class="contact-direct">
           <a href={`tel:${phone.replace(/\s/g, '')}`}><span class="contact-label">tel.</span><span>{phone}</span></a>
