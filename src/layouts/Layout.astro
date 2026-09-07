@@ -1,4 +1,5 @@
 ---
+import SocialIcon from '../components/SocialIcon.astro';
 import { withBase } from '../lib/paths';
 import Navbar from '../components/Navbar.astro';
 import '@fontsource-variable/manrope';
@@ -27,8 +28,8 @@ const ready = Boolean(Astro.site && c.privacyApproved);
     <Navbar booksyUrl={c.booksyUrl} />
     <main id="tresc"><slot /></main>
     <footer class="footer"><div class="shell">
-      <div class="footer-top"><div><p class="eyebrow light">TWÓJ KOLEJNY KROK</p><h2>Zadbaj o swobodę<br />swojego ruchu.</h2><p>Wybierz dogodny termin wizyty w Booksy.</p></div><a class="button cream" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a></div>
-      <div class="footer-bottom"><div class="brand">MECHANIKA CIAŁA<span>Kamil Szuwalski · Fizjoterapia</span></div><div><p>{c.location}</p>{c.address&&<p>{c.address}</p>}{c.phone&&<a href={`tel:${c.phone.replace(/\s/g,'')}`}>{c.phone}</a>}{c.email&&<a href={`mailto:${c.email}`}>{c.email}</a>}</div><div class="footer-links"><a href={c.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href={c.googleUrl} target="_blank" rel="noopener noreferrer">Wizytówka Google ↗</a><a href={withBase('/prywatnosc/')}>Prywatność i cookies</a></div></div>
+      <div class="footer-top"><div><p class="eyebrow light">TWÓJ KOLEJNY KROK</p><h2>Zadbaj o swobodę ruchu.</h2></div><a class="button cream" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a></div>
+      <div class="footer-bottom"><div class="brand">MECHANIKA CIAŁA<span>Kamil Szuwalski · Fizjoterapia</span></div><div><p>{c.location}</p>{c.address&&<p>{c.address}</p>}{c.phone&&<a href={`tel:${c.phone.replace(/\s/g,'')}`}>{c.phone}</a>}{c.email&&<a href={`mailto:${c.email}`}>{c.email}</a>}</div><div class="footer-links"><a href={c.facebookUrl} target="_blank" rel="noopener noreferrer"><SocialIcon name="facebook" />Facebook <span aria-hidden="true">↗</span></a><a href={c.googleUrl} target="_blank" rel="noopener noreferrer"><SocialIcon name="map" />Google Maps <span aria-hidden="true">↗</span></a><a href={withBase('/prywatnosc/')}>Prywatność i cookies</a></div></div>
       <div class="copyright">© {new Date().getFullYear()} Mechanika Ciała Kamil Szuwalski</div>
     </div></footer>
   </body>
