@@ -1,10 +1,20 @@
 import {readFile,access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import config from '../astro.config.mjs';
+import {currentNavValue} from '../src/lib/navigation.mjs';
 const base = (config.base || '/').replace(/\/$/, '') + '/';
 const pages=['index.html','o-mnie/index.html','kontakt/index.html','prywatnosc/index.html','404.html'];
+let sharedHeader;
+let sharedStyles;
 for(const path of pages){
  const html=await readFile('dist/'+path,'utf8');
+ const header=html.match(/<header\b[^>]*>[\s\S]*?<\/header>/)?.[0].replace(/ aria-current="[^"]*"/g,'');
+ assert(header, `Header exists: ${path}`);
+ const styles=[...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)].map(m=>m[0]);
+ if(sharedHeader) {
+  assert.equal(header,sharedHeader,`Shared navigation: ${path}`);
+  assert.deepEqual(styles,sharedStyles,`Shared stylesheet: ${path}`);
+ } else {sharedHeader=header;sharedStyles=styles;}
  assert.match(html,/<html lang="pl"/);
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1,`one h1: ${path}`);
  assert.match(html,/<meta name="description"/);
@@ -23,3 +33,18 @@ for(const name of ['kamil','terapia','gabinet','terapia-szyi']){
 }
 await access('dist/robots.txt');await access('dist/sitemap.xml');
 console.log('PASS: 5 pages, local links/assets, Polish language, headings, metadata, JPEGs, privacy-safe embeds.');
+
+const origin='https://example.com';
+for(const prefix of ['/', '/mechanika-ciala/']) {
+ const links=[prefix,prefix+'#jak-pomagam',prefix+'o-mnie/',prefix+'kontakt/'];
+ for(const [location,expected] of [
+  [prefix,['page',undefined,undefined,undefined]],
+  [prefix+'#jak-pomagam',[undefined,'location',undefined,undefined]],
+  [prefix+'o-mnie/',[undefined,undefined,'page',undefined]],
+  [prefix+'o-mnie',[undefined,undefined,'page',undefined]],
+  [prefix+'kontakt/',[undefined,undefined,undefined,'page']],
+  [prefix+'#tresc',['page',undefined,undefined,undefined]],
+  [prefix+'prywatnosc/',[undefined,undefined,undefined,undefined]],
+ ]) assert.deepEqual(links.map(link=>currentNavValue(link,origin+location)),expected,location);
+}
+console.log('PASS: shared navigation/styles on all pages, active page and section with and without base path.');

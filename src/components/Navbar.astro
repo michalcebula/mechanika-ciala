@@ -1,0 +1,35 @@
+---
+import { withBase } from '../lib/paths';
+const { booksyUrl } = Astro.props;
+const path = Astro.url.pathname;
+const isCurrentPage = (url: string) => path.replace(/\/$/, '') === url.replace(/\/$/, '');
+const nav = [{url:'/',label:'Start'},{url:'/#jak-pomagam',label:'Jak pomagam'},{url:'/o-mnie/',label:'O mnie'},{url:'/kontakt/',label:'Kontakt'}].map(n => ({ ...n, url: withBase(n.url) }));
+---
+    <header class="header"><div class="shell nav-wrap">
+      <a class="brand" href={withBase('/')} aria-label="Mechanika Ciała — strona główna">MECHANIKA CIAŁA<span>KAMIL SZUWALSKI · FIZJOTERAPIA</span></a>
+      <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}</nav>
+      <a class="button nav-cta" href={booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a>
+      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę ↗</a></nav></details>
+    </div></header>
+
+<script>
+  import { currentNavValue } from '../lib/navigation.mjs';
+
+  function updateNavigation() {
+    document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]').forEach(link => {
+      const current = currentNavValue(link.href, window.location.href);
+      if (current) link.setAttribute('aria-current', current);
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  updateNavigation();
+  window.addEventListener('hashchange', updateNavigation);
+  window.addEventListener('pageshow', updateNavigation);
+  document.addEventListener('astro:page-load', updateNavigation);
+  document.addEventListener('click', event => {
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest('.mobile-menu a');
+    if (link) link.closest('details')?.removeAttribute('open');
+  });
+</script>

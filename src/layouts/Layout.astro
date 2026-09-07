@@ -1,13 +1,12 @@
 ---
 import { withBase } from '../lib/paths';
+import Navbar from '../components/Navbar.astro';
 import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import { getContent } from '../lib/content';
 const c = await getContent();
 const {title, description = c.heroDescription} = Astro.props;
 const path = Astro.url.pathname;
-const isCurrentPage = (url: string) => path.replace(/\/$/, '') === url.replace(/\/$/, '');
-const nav = [{url:'/',label:'Start'},{url:'/#jak-pomagam',label:'Jak pomagam'},{url:'/o-mnie/',label:'O mnie'},{url:'/kontakt/',label:'Kontakt'}].map(n => ({ ...n, url: withBase(n.url) }));
 const canonical = Astro.site ? new URL(path,Astro.site).href : undefined;
 const ready = Boolean(Astro.site && c.privacyApproved);
 ---
@@ -25,12 +24,7 @@ const ready = Boolean(Astro.site && c.privacyApproved);
   </head>
   <body>
     <a class="skip" href="#tresc">Przejdź do treści</a>
-    <header class="header"><div class="shell nav-wrap">
-      <a class="brand" href={withBase('/')} aria-label="Mechanika Ciała — strona główna">MECHANIKA CIAŁA<span>KAMIL SZUWALSKI · FIZJOTERAPIA</span></a>
-      <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}</nav>
-      <a class="button nav-cta" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a>
-      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę ↗</a></nav></details>
-    </div></header>
+    <Navbar booksyUrl={c.booksyUrl} />
     <main id="tresc"><slot /></main>
     <footer class="footer"><div class="shell">
       <div class="footer-top"><div><p class="eyebrow light">TWÓJ KOLEJNY KROK</p><h2>Zadbaj o swobodę<br />swojego ruchu.</h2><p>Wybierz dogodny termin wizyty w Booksy.</p></div><a class="button cream" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a></div>
