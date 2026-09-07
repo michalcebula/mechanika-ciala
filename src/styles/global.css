@@ -88,3 +88,12 @@
 @layer responsive {
 @media(max-width:760px){.help-intro{grid-template-columns:1fr;gap:24px;margin-bottom:28px}.help-copy p,.cooperation-copy p{font-size:1rem}}
 }
+
+@layer components {
+.booksy-rating{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding-block:8px;border-bottom:1px solid transparent}
+.booksy-rating:hover{border-bottom-color:var(--green)}
+.booksy-rating .rating-star{color:var(--orange);flex-shrink:0}
+.booksy-rating strong{font-size:1.65rem;font-weight:750;line-height:1.2;white-space:nowrap}
+.booksy-rating small{font-size:.95rem;font-weight:500;color:var(--muted)}
+.trust-inner .booksy-rating .rating-count{color:var(--ink);margin-left:0;font-size:.9rem;border-left:1px solid var(--line);padding-left:12px}
+}

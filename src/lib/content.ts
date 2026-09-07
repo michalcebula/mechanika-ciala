@@ -27,7 +27,8 @@ export const fallback = {
   ],
   methods: [{ title: 'Terapia manualna', description: 'Praca z ciałem dostosowana do badania, Twoich potrzeb i możliwości.' }, { title: 'Współpraca z trenerami', description: 'Fizjoterapia i trening jako uzupełniające się elementy pracy nad sprawnością.' }],
   credentials: [] as { title: string; institution: string; year?: string }[],
-  reviews: [] as { name: string; text: string }[], rating: '', reviewCount: '',
+  // Verified against the public Booksy profile on 2026-09-07; update manually or through Sanity.
+  reviews: [] as { name: string; text: string }[], rating: '5.0', reviewCount: '81',
   privacyApproved: false, privacyText: [] as string[]
 };
 export type Content = typeof fallback;

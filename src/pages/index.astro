@@ -3,10 +3,21 @@ import { withBase } from '../lib/paths';
 import Layout from '../layouts/Layout.astro';
 import {getContent} from '../lib/content';
 const c = await getContent();
+const reviewCount = Number(c.reviewCount);
+const rating = Number(String(c.rating).replace(',', '.'));
+const hasBooksyRating = Number.isFinite(rating) && rating > 0 && rating <= 5 && Number.isInteger(reviewCount) && reviewCount > 0;
+const reviewWord = reviewCount === 1 ? 'opinia' : new Intl.PluralRules('pl').select(reviewCount) === 'few' ? 'opinie' : 'opinii';
+const ratingLabel = rating.toLocaleString('pl-PL', {minimumFractionDigits: 1, maximumFractionDigits: 1});
 ---
 <Layout title="Fizjoterapia Kraków Zabłocie — Kamil Szuwalski">
   <section class="hero shell"><div class="hero-copy"><p class="eyebrow">FIZJOTERAPIA · KRAKÓW ZABŁOCIE</p><h1>{c.heroTitle.split('\n').map(line=><span>{line}</span>)}</h1><div class="accent-line"></div><p class="lead">{c.heroDescription}</p><div class="actions"><a class="button" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a><a class="text-link" href="#jak-pomagam">Poznaj moje podejście <span aria-hidden="true">↓</span></a></div><p class="hero-caption">Kamil Szuwalski <span>— fizjoterapeuta</span></p></div><div class="hero-photo"><img src={c.heroImage} alt="Kamil Szuwalski podczas terapii manualnej w gabinecie" width="1000" height="1100" fetchpriority="high" /><span class="photo-label">Mechanika Ciała / Zabłocie</span></div></section>
-  <div class="trust"><div class="shell trust-inner"><span class="small-label">INDYWIDUALNA PRACA Z CIAŁEM</span><span>Gabinet w XXS Gym</span><a href={c.booksyUrl} target="_blank" rel="noopener noreferrer">{c.rating ? `${c.rating} / 5 na Booksy` : 'Poznaj opinie pacjentów na Booksy'} <span aria-hidden="true">↗</span></a></div></div>
+  <div class="trust"><div class="shell trust-inner">
+    <span class="small-label">INDYWIDUALNA PRACA Z CIAŁEM</span>
+    <span>Gabinet w XXS Gym</span>
+    <a class="booksy-rating" href={c.booksyUrl} target="_blank" rel="noopener noreferrer" aria-label={hasBooksyRating ? `Ocena ${ratingLabel} na 5, ${reviewCount} ${reviewWord}. Przeczytaj opinie na Booksy` : 'Poznaj opinie pacjentów na Booksy'}>
+      {hasBooksyRating ? <><svg class="rating-star" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.76 5.82 21 7 14.14 2 9.27l6.91-1.01Z" /></svg><strong>{ratingLabel} <small>/ 5</small></strong><span class="rating-count">{reviewCount} {reviewWord} na Booksy</span></> : 'Poznaj opinie pacjentów na Booksy'}
+    </a>
+  </div></div>
   <section class="section shell help-section" id="jak-pomagam" aria-labelledby="help-title">
     <div class="help-intro">
       <div><p class="eyebrow">01 / JAK POMAGAM</p><h2 id="help-title">Fizjoterapia dopasowana<br />do Twoich potrzeb.</h2></div>
