@@ -1,5 +1,7 @@
 ---
 import { withBase } from '../lib/paths';
+import {getContent} from '../lib/content';
+const c = await getContent();
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Nie znaleziono strony"><section class="shell section prose"><p class="eyebrow">404</p><h1>Tu kończy się<br />ta ścieżka.</h1><p>Ta strona nie istnieje. Wróć na stronę główną lub umów wizytę.</p><a class="button" href={withBase('/')}>Wróć na stronę główną</a></section></Layout>
+<Layout title={c.copy.notFound.seoTitle}><section class="shell section prose"><p class="eyebrow">404</p><h1>{c.copy.notFound.title}</h1><p>{c.copy.notFound.description}</p><a class="button" href={withBase('/')}>{c.copy.notFound.backLabel}</a></section></Layout>

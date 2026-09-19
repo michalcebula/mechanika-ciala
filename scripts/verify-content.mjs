@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {mergeContent} from '../src/lib/merge-content.mjs';
+const defaults = {name:'Original',copy:{home:{title:'Original title',paragraphs:['First','Second']},contact:{title:'Contact'}},services:[{title:'Service',description:'Description'}]};
+const updated = mergeContent(defaults, {name:'New name',copy:{home:{title:'Edited title'}}});
+assert.equal(updated.name,'New name');
+assert.equal(updated.copy.home.title,'Edited title');
+assert.deepEqual(updated.copy.home.paragraphs,defaults.copy.home.paragraphs);
+assert.equal(updated.copy.contact.title,'Contact');
+assert.equal(defaults.name,'Original');
+assert.deepEqual(mergeContent(defaults,{services:[]}).services,[]);
+assert.equal(mergeContent(defaults,{copy:{home:{title:''}}}).copy.home.title,'');
+assert.equal(mergeContent(defaults,{copy:{home:{title:null}}}).copy.home.title,'Original title');
+assert.throws(()=>mergeContent(defaults,{copy:{home:{paragraphs:'wrong'}}}),/Expected list/);
+assert.throws(()=>mergeContent(defaults,{services:[null]}),/Invalid list item/);
+assert.throws(()=>mergeContent(defaults,{name:42}),/Invalid value/);
+assert.equal(mergeContent(defaults,{services:[{title:'Edited service'}]}).services[0].description,'Description');
+console.log('PASS: partial CMS updates, nested defaults, empty fields/lists, invalid data, defaults remain intact.');

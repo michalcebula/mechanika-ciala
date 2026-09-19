@@ -112,3 +112,8 @@
 @layer responsive {
 @media(max-width:760px){.trust-inner .booksy-rating{width:100%}}
 }
+
+/* Preserve editor-entered heading line breaks. */
+h1, h2 { white-space: pre-line; }
+
+.brand { text-transform: uppercase; }

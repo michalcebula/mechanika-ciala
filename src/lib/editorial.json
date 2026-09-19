@@ -1,0 +1,95 @@
+{
+  "home": {
+    "eyebrow": "FIZJOTERAPIA · KRAKÓW ZABŁOCIE",
+    "approachLink": "Poznaj moje podejście",
+    "profession": "— fizjoterapeuta",
+    "photoLabel": "Mechanika Ciała / Zabłocie",
+    "trustLabel": "INDYWIDUALNA PRACA Z CIAŁEM",
+    "clinicLabel": "Gabinet w XXS Gym",
+    "helpLabel": "01 / JAK POMAGAM",
+    "cooperationLabel": "02 / WSPÓŁPRACA",
+    "cooperationLink": "Porozmawiajmy o Twoich potrzebach",
+    "aboutLabel": "03 / POZNAJMY SIĘ",
+    "aboutLink": "Więcej o mnie",
+    "reviewsLabel": "04 / OPINIE PACJENTÓW",
+    "reviewsLink": "Przeczytaj opinie na Booksy ↗",
+    "helpTitle": "Fizjoterapia dopasowana\ndo Twoich potrzeb.",
+    "cooperationTitle": "Współpraca w drodze\ndo Twojej sprawności",
+    "aboutTitle": "Kamil Szuwalski.\nTwój fizjoterapeuta.",
+    "reviewsTitle": "Zaufanie budujemy\npodczas każdej wizyty.",
+    "helpParagraphs": [
+      "W pracy z pacjentami łączę nowoczesne techniki fizjoterapeutyczne z wiedzą zdobytą na szkoleniach z terapii manualnej, terapii bólu i rehabilitacji neurologicznej. Korzystam z ponad 12 lat doświadczenia w pracy z osobami z różnorodnymi dolegliwościami.",
+      "Podczas wizyty przeprowadzę wywiad i badanie, aby rozpoznać Twój problem. Dobiorę terapię do Twoich potrzeb, zaproponuję ćwiczenia i przekażę wskazówki do samodzielnej pracy.",
+      "Specjalizuję się w terapii bólu kręgosłupa, mięśni i stawów oraz rehabilitacji po urazach i operacjach ortopedycznych i neurologicznych. W terapii wykorzystuję między innymi techniki manualne."
+    ],
+    "cooperationParagraphs": [
+      "Współpracuję ze sprawdzonymi trenerami personalnymi z wykształceniem fizjoterapeutycznym. W późniejszych etapach terapii pomagają pacjentom wzmacniać mięśnie i stopniowo wracać do pełnej aktywności ruchowej.",
+      "Odpowiednio dobrany trening stanowi uzupełnienie fizjoterapii. Pozwala rozwijać siłę, utrwalać efekty terapii i wspiera sprawny powrót do codziennych zajęć oraz sportu — z uwzględnieniem potrzeb i możliwości pacjenta."
+    ],
+    "seoTitle": "Fizjoterapia Kraków Zabłocie — Kamil Szuwalski"
+  },
+  "about": {
+    "eyebrow": "KILKA SŁÓW O MNIE",
+    "credentialsLabel": "WIEDZA I DOŚWIADCZENIE",
+    "credentialsTitle": "Wykształcenie i certyfikaty",
+    "values": [
+      {
+        "title": "Rozmowa i badanie",
+        "text": "Przyglądamy się Twoim potrzebom, dolegliwościom i codziennej aktywności."
+      },
+      {
+        "title": "Indywidualny plan",
+        "text": "Ustalamy kierunek pracy odpowiedni do Twoich celów i możliwości."
+      },
+      {
+        "title": "Świadomy ruch",
+        "text": "Pracujemy nad sprawnością, która ma znaczenie w Twoim codziennym życiu."
+      }
+    ],
+    "seoTitle": "O mnie — Kamil Szuwalski",
+    "seoDescription": "Poznaj Kamila Szuwalskiego, fizjoterapeutę prowadzącego gabinet Mechanika Ciała w Krakowie na Zabłociu."
+  },
+  "contact": {
+    "eyebrow": "KONTAKT / KRAKÓW · ZABŁOCIE",
+    "title": "Napisz, zadzwoń lub umów wizytę.\nDo zobaczenia w gabinecie!",
+    "personDescription": "Fizjoterapeuta · Mechanika Ciała",
+    "locationLabel": "TU PRZYJMUJĘ",
+    "directionsLink": "Wyznacz trasę w Google Maps",
+    "seoTitle": "Kontakt i rezerwacja wizyty",
+    "seoDescription": "Zadzwoń, napisz lub umów wizytę w Booksy. Kamil Szuwalski — Mechanika Ciała, XXS Gym, Zabłocie 24 w Krakowie."
+  },
+  "shared": {
+    "footerLabel": "TWÓJ KOLEJNY KROK",
+    "footerTitle": "Zadbaj o swobodę ruchu.",
+    "brandSubtitle": "Kamil Szuwalski · Fizjoterapia",
+    "privacyLink": "Prywatność i cookies",
+    "navHome": "Start",
+    "navHelp": "Jak pomagam",
+    "navAbout": "O mnie",
+    "navContact": "Kontakt",
+    "bookingLabel": "Umów się przez Booksy",
+    "navBookingLabel": "Umów wizytę"
+  },
+  "privacy": {
+    "seoTitle": "Prywatność i cookies",
+    "seoDescription": "Informacje o prywatności na stronie Mechanika Ciała.",
+    "eyebrow": "PRYWATNOŚĆ",
+    "title": "Prywatność\ni cookies."
+  },
+  "notFound": {
+    "seoTitle": "Nie znaleziono strony",
+    "title": "Tu kończy się\nta ścieżka.",
+    "description": "Ta strona nie istnieje. Wróć na stronę główną lub umów wizytę.",
+    "backLabel": "Wróć na stronę główną"
+  },
+  "images": {
+    "index1": "Portret fizjoterapeuty Kamila Szuwalskiego",
+    "index0": "Kamil Szuwalski podczas terapii manualnej w gabinecie",
+    "o_mnie2": "Wnętrze gabinetu Mechanika Ciała",
+    "o_mnie1": "Terapia manualna w gabinecie Mechanika Ciała",
+    "o_mnie0": "Kamil Szuwalski w swoim gabinecie",
+    "kontakt2": "Indywidualna praca z pacjentką w gabinecie",
+    "kontakt1": "Kamil Szuwalski podczas terapii manualnej",
+    "kontakt0": "Wnętrze gabinetu Mechanika Ciała w XXS Gym"
+  }
+}

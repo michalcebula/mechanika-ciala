@@ -1,15 +1,17 @@
 ---
 import { withBase } from '../lib/paths';
-const { booksyUrl } = Astro.props;
+import {getContent} from '../lib/content';
+const c = await getContent();
+const booksyUrl = c.booksyUrl;
 const path = Astro.url.pathname;
 const isCurrentPage = (url: string) => path.replace(/\/$/, '') === url.replace(/\/$/, '');
-const nav = [{url:'/',label:'Start'},{url:'/#jak-pomagam',label:'Jak pomagam'},{url:'/o-mnie/',label:'O mnie'},{url:'/kontakt/',label:'Kontakt'}].map(n => ({ ...n, url: withBase(n.url) }));
+const nav = [{url:'/',label:c.copy.shared.navHome},{url:'/#jak-pomagam',label:c.copy.shared.navHelp},{url:'/o-mnie/',label:c.copy.shared.navAbout},{url:'/kontakt/',label:c.copy.shared.navContact}].map(n => ({ ...n, url: withBase(n.url) }));
 ---
     <header class="header"><div class="shell nav-wrap">
-      <a class="brand" href={withBase('/')} aria-label="Mechanika Ciała — strona główna">MECHANIKA CIAŁA<span>KAMIL SZUWALSKI · FIZJOTERAPIA</span></a>
+      <a class="brand" href={withBase('/')} aria-label={`${c.name} — strona główna`}>{c.name}<span>{c.copy.shared.brandSubtitle}</span></a>
       <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}</nav>
-      <a class="button nav-cta" href={booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę <span aria-hidden="true">↗</span></a>
-      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={booksyUrl} target="_blank" rel="noopener noreferrer">Umów wizytę ↗</a></nav></details>
+      <a class="button nav-cta" href={booksyUrl} target="_blank" rel="noopener noreferrer">{c.copy.shared.navBookingLabel} <span aria-hidden="true">↗</span></a>
+      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={booksyUrl} target="_blank" rel="noopener noreferrer">{c.copy.shared.navBookingLabel} ↗</a></nav></details>
     </div></header>
 
 <script>
