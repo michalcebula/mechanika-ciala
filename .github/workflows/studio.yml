@@ -47,4 +47,4 @@ jobs:
       - name: Deploy editor to Sanity hosting
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-        run: npm exec -- sanity deploy
+        run: node scripts/deploy.mjs
