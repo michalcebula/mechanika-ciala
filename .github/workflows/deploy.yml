@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # GitHub Pages is static; periodically pick up newly published Sanity content.
+    - cron: '*/5 * * * *'
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
 
 permissions:
   contents: read

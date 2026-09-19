@@ -66,7 +66,7 @@ W dokumencie **Treści strony** znajdziesz:
 
 Studio otwiera bezpośrednio jeden stały dokument „Mechanika Ciała — treści”; nie ma osobnego procesu dodawania contentu. Workflow wdrażający Studio jednorazowo tworzy ten dokument z obecną zawartością strony, jeśli jeszcze nie istnieje. Następne wdrożenia nie nadpisują zmian redakcyjnych. Formularz jest podzielony na jednoznaczne zakładki odpowiadające podstronom i wspólnym elementom. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
 
-Dokument ma dwie zakładki: **Edycja** oraz **Podgląd strony**. Podgląd pozwala przełączać się między stroną główną, „O mnie”, kontaktem i prywatnością. Pokazuje ostatnią wersję wdrożoną na GitHub Pages, dlatego po publikacji treści trzeba uruchomić workflow „Deploy to GitHub Pages” i kliknąć „Odśwież” nad podglądem.
+Dokument ma dwie zakładki: **Edycja** oraz **Podgląd strony**. Podgląd pozwala przełączać się między stroną główną, „O mnie”, kontaktem i prywatnością. GitHub Pages sprawdza opublikowane treści co 5 minut; z uwagi na czas kolejki i wdrożenia zmiana zwykle pojawia się w ciągu 5–10 minut. Po wdrożeniu kliknij „Odśwież” nad podglądem. Workflow „Deploy to GitHub Pages” można też uruchomić ręcznie, gdy zmiana ma pojawić się od razu.
 
 Nowa linia w nagłówku dzieli wiersze. Listy można porządkować i usuwać z nich pozycje; pusta lista usuwa ich zawartość ze strony. Usunięcie pola (brak wartości w Sanity) przywraca wartość domyślną. Zapisany pusty tekst pozostaje pusty. Pola dawnych metod i akapitów „Jak pracuję” są zachowane dla zgodności i ukryte; aktualne opisy edytuj w grupie Strona główna.
 
@@ -88,6 +88,6 @@ GitHub buduje i wdraża panel na hosting Sanity. Strona pozostaje na GitHub Page
 3. Wyślij commity do GitHuba i uruchom **Actions → Deploy Sanity Studio → Run workflow**. Późniejsze zmiany plików Studio na `main` uruchamiają wdrożenie automatycznie.
 4. Planowany adres: `https://mechanika-ciala-4gf21eo2.sanity.studio`. Dostępność nazwy potwierdzi pierwsze wdrożenie. Jeśli nazwa jest zajęta, ustaw zmienną repozytorium `SANITY_STUDIO_HOST` na inną unikalną nazwę i ponów workflow.
 5. Otwórz panel na urządzeniu z dostępem do konta Sanity. Formularz „Treści strony” otworzy się automatycznie; sprawdź obecną treść i kliknij **Publish**.
-6. Ustaw zmienne repozytorium `SANITY_PROJECT_ID=4gf21eo2` i `SANITY_DATASET=production`, następnie uruchom **Deploy to GitHub Pages**. Po kolejnych publikacjach treści ponownie uruchamiaj ten workflow. Publikacja treści nie uruchamia go automatycznie.
+6. Ustaw zmienne repozytorium `SANITY_PROJECT_ID=4gf21eo2` i `SANITY_DATASET=production`. Workflow **Deploy to GitHub Pages** uruchamia się po zmianach kodu, ręcznie oraz co 5 minut, aby pobrać nowe publikacje z Sanity.
 
 Workflow Studio jest niezależny od budowania strony, więc można wdrożyć panel przed utworzeniem pierwszego dokumentu. Token jest dostępny tylko w kroku kontroli sekretu i wdrożenia; nie jest zmienną `SANITY_STUDIO_*` ani częścią publicznej konfiguracji.

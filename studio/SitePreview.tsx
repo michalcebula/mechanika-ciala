@@ -43,7 +43,7 @@ export const SitePreview: UserViewComponent = () => {
         </a>
       </div>
       <p style={{margin: 0, padding: '8px 12px', background: '#fff8dc', borderBottom: '1px solid #e5d79c', fontSize: 13}}>
-        Podgląd pokazuje ostatnią wersję wdrożoną na GitHub Pages. Po Publish uruchom „Deploy to GitHub Pages”, a potem kliknij Odśwież.
+        Po Publish GitHub Pages aktualizuje stronę automatycznie, zwykle w ciągu 5–10 minut. Potem kliknij Odśwież.
       </p>
       <iframe key={`${path}-${refresh}`} src={url} title="Podgląd strony Mechanika Ciała" style={{width: '100%', flex: 1, border: 0, background: 'white'}} />
     </div>
