@@ -66,6 +66,8 @@ W dokumencie **Treści strony** znajdziesz:
 
 Studio otwiera bezpośrednio jeden stały dokument „Treści strony”; nie ma osobnego procesu dodawania contentu. Przy pierwszym otwarciu formularz jest wypełniony obecną treścią strony. Kliknij **Publish** raz, aby zapisać ten dokument w Sanity. Od tej chwili każde kolejne wejście służy wyłącznie do edycji tego samego dokumentu. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
 
+Dokument ma dwie zakładki: **Edycja** oraz **Podgląd strony**. Podgląd pozwala przełączać się między stroną główną, „O mnie”, kontaktem i prywatnością. Pokazuje ostatnią wersję wdrożoną na GitHub Pages, dlatego po publikacji treści trzeba uruchomić workflow „Deploy to GitHub Pages” i kliknąć „Odśwież” nad podglądem.
+
 Nowa linia w nagłówku dzieli wiersze. Listy można porządkować i usuwać z nich pozycje; pusta lista usuwa ich zawartość ze strony. Usunięcie pola (brak wartości w Sanity) przywraca wartość domyślną. Zapisany pusty tekst pozostaje pusty. Pola dawnych metod i akapitów „Jak pracuję” są zachowane dla zgodności i ukryte; aktualne opisy edytuj w grupie Strona główna.
 
 Zmiany trzeba **opublikować w Studio**, następnie przebudować i wdrożyć stronę. Sama publikacja w Sanity nie zmienia statycznej strony. W GitHub Pages workflow można uruchomić ręcznie z zakładki Actions. Ustaw w GitHub Actions zmienne `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SITE_URL` oraz opcjonalny sekret `SANITY_READ_TOKEN` dla prywatnego datasetu. Workflow przekazuje je podczas budowania. Automatyczny webhook i publiczny adres panelu wymagają osobnego skonfigurowania w koncie Sanity i hostingu.
