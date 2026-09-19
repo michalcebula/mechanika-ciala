@@ -12,6 +12,7 @@ Node 22.12+ (sprawdzone na Node 24), npm.
 
 ```sh
 npm ci
+npm ci --prefix studio
 npm run dev
 npm run check
 npm run build
@@ -27,7 +28,7 @@ npm test
 5. Wypełnij treści, dane kontaktowe, kwalifikacje, zatwierdzone opinie i zdjęcia. Nieobecne pola korzystają z lokalnej wersji roboczej. Puste listy kwalifikacji i opinii nie są wyświetlane.
 6. Po publikacji w Sanity wykonaj ponownie `npm run build` i wgraj nowy `dist/`. Automatyzacja przebudowania / webhook nie jest jeszcze skonfigurowana.
 
-Treści Sanity pobierane są wyłącznie podczas budowania. Token nie trafia do przeglądarki. Błąd CMS przerywa build zamiast publikować nieaktualną wersję. Bez konfiguracji Sanity strona działa na danych roboczych z `src/lib/content.ts`.
+Treści Sanity pobierane są wyłącznie podczas budowania. Token nie trafia do przeglądarki. Błąd CMS przerywa build zamiast publikować nieaktualną wersję. Bez konfiguracji Sanity strona działa na danych roboczych z `src/lib/defaults.ts` oraz `src/lib/editorial.json`.
 
 ### OVH
 
@@ -53,3 +54,24 @@ Hosting OVH, domena oraz pipeline wdrożeniowy nie zostały utworzone ani zmieni
 - Dokumentacja Sanity: https://www.sanity.io/docs
 
 Fotografie pochodzą z materiałów przekazanych przez właściciela projektu; twarze i sceny pozostają oryginalne.
+
+### Edycja całej strony w Sanity Studio
+
+Panel uruchomisz z głównego katalogu przez `npm run studio:dev` (po `npm ci --prefix studio`).
+W dokumencie **Treści strony** znajdziesz:
+
+- **Treści podstron, menu i stopki** — nagłówki, akapity, etapy pracy, podpisy, przyciski, etykiety menu oraz tytuły i opisy SEO.
+- **Opisy zdjęć** — teksty alternatywne zdjęć w poszczególnych miejscach strony.
+- Dane firmy i kontakt, biografię, usługi, kwalifikacje, opinie, ocenę Booksy, politykę prywatności oraz cztery zdjęcia.
+
+Nowy dokument otrzymuje obecną treść strony. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych. Edytuj jeden istniejący dokument; strona wybiera ostatnio zaktualizowany opublikowany dokument „Treści strony”. Nowe pola w starszych dokumentach korzystają z wartości domyślnych, dopóki ich nie uzupełnisz. Nie trzeba tworzyć dokumentu od nowa.
+
+Nowa linia w nagłówku dzieli wiersze. Listy można porządkować i usuwać z nich pozycje; pusta lista usuwa ich zawartość ze strony. Usunięcie pola (brak wartości w Sanity) przywraca wartość domyślną. Zapisany pusty tekst pozostaje pusty. Pola dawnych metod i akapitów „Jak pracuję” są zachowane dla zgodności i ukryte; aktualne opisy edytuj w grupie Strona główna.
+
+Zmiany trzeba **opublikować w Studio**, następnie przebudować i wdrożyć stronę. Sama publikacja w Sanity nie zmienia statycznej strony. W GitHub Pages workflow można uruchomić ręcznie z zakładki Actions. Ustaw w GitHub Actions zmienne `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SITE_URL` oraz opcjonalny sekret `SANITY_READ_TOKEN` dla prywatnego datasetu. Workflow przekazuje je podczas budowania. Automatyczny webhook i publiczny adres panelu wymagają osobnego skonfigurowania w koncie Sanity i hostingu.
+
+Konfiguracja Studio: [zmienne środowiskowe Sanity](https://www.sanity.io/docs/studio/environment-variables).
+
+Aktualne połączenie lokalne: projekt `4gf21eo2`, dataset `production` (odczyt API sprawdzony). W chwili konfiguracji dataset nie zawierał dokumentu `siteSettings`. Panel lokalny uruchamia się pod `http://127.0.0.1:3333/`. W Sanity Manage dodaj ten adres jako development host/CORS origin dla panelu z logowaniem, następnie zaloguj się w Studio, utwórz dokument „Treści strony” i kliknij Publish. Do tego czasu budowanie z włączonym CMS zgłasza brak opublikowanego dokumentu. Nie publikuje automatycznie wartości domyślnych w miejsce brakujących danych CMS.
+
+Pliki `.env` pozostają lokalne i nie trafiają do repozytorium. Node 22.12+ jest wymagany również do uruchamiania Studio.

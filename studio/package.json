@@ -1,1 +1,21 @@
-{"name":"mechanika-ciala-studio","private":true,"type":"module","scripts":{"dev":"sanity dev","build":"sanity build"},"dependencies":{"sanity":"^4.0.0","react":"^19.0.0","react-dom":"^19.0.0","styled-components":"^6.1.0"}}
+{
+  "name": "mechanika-ciala-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^4.0.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
