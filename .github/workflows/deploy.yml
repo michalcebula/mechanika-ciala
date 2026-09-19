@@ -5,8 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # GitHub Pages is static; periodically pick up newly published Sanity content.
-    - cron: '*/5 * * * *'
+    # Fallback for the Sanity webhook. Staggered minutes avoid GitHub's busiest
+    # points at the start of an hour.
+    - cron: '7,17,27,37,47,57 * * * *'
 
 concurrency:
   group: github-pages
