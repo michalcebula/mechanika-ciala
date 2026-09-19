@@ -19,7 +19,21 @@ async function load(): Promise<Content> {
   if (!projectId && !dataset) return fallback;
   if (!projectId || !dataset) throw new Error('Set both SANITY_PROJECT_ID and SANITY_DATASET.');
   const client = createClient({ projectId, dataset, apiVersion: '2025-02-19', useCdn: false, perspective: 'published', token: import.meta.env.SANITY_READ_TOKEN || undefined });
-  const doc = await client.fetch('*[_id == "siteSettings"][0]{..., "heroImage":heroImage.asset->url,"portraitImage":portraitImage.asset->url,"clinicImage":clinicImage.asset->url,"treatmentImage":treatmentImage.asset->url}');
+  const doc = await client.fetch(`*[_id == "siteSettings"][0]{...,
+    "copy": {
+      "home": coalesce(home, copy.home),
+      "about": coalesce(about, copy.about),
+      "contact": coalesce(contact, copy.contact),
+      "shared": coalesce(shared, copy.shared),
+      "privacy": coalesce(privacy, copy.privacy),
+      "notFound": coalesce(notFound, copy.notFound),
+      "images": coalesce(images, copy.images)
+    },
+    "heroImage":heroImage.asset->url,
+    "portraitImage":portraitImage.asset->url,
+    "clinicImage":clinicImage.asset->url,
+    "treatmentImage":treatmentImage.asset->url
+  }`);
   if (!doc) throw new Error('Publish a siteSettings document in Sanity before building.');
   const data = mergeContent(fallback, doc) as Content;
   for (const key of ['booksyUrl', 'googleUrl', 'facebookUrl'] as const) {

@@ -1,4 +1,4 @@
-import editorial from './editorial.json';
+import editorial from './editorial.json' with {type: 'json'};
 export const defaults = {
   copy: editorial,
   treatmentImage: '/images/terapia-szyi.jpg',

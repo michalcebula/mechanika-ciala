@@ -64,7 +64,7 @@ W dokumencie **Treści strony** znajdziesz:
 - **Opisy zdjęć** — teksty alternatywne zdjęć w poszczególnych miejscach strony.
 - Dane firmy i kontakt, biografię, usługi, kwalifikacje, opinie, ocenę Booksy, politykę prywatności oraz cztery zdjęcia.
 
-Studio otwiera bezpośrednio jeden stały dokument „Treści strony”; nie ma osobnego procesu dodawania contentu. Przy pierwszym otwarciu formularz jest wypełniony obecną treścią strony. Kliknij **Publish** raz, aby zapisać ten dokument w Sanity. Od tej chwili każde kolejne wejście służy wyłącznie do edycji tego samego dokumentu. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
+Studio otwiera bezpośrednio jeden stały dokument „Mechanika Ciała — treści”; nie ma osobnego procesu dodawania contentu. Workflow wdrażający Studio jednorazowo tworzy ten dokument z obecną zawartością strony, jeśli jeszcze nie istnieje. Następne wdrożenia nie nadpisują zmian redakcyjnych. Formularz jest podzielony na jednoznaczne zakładki odpowiadające podstronom i wspólnym elementom. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
 
 Dokument ma dwie zakładki: **Edycja** oraz **Podgląd strony**. Podgląd pozwala przełączać się między stroną główną, „O mnie”, kontaktem i prywatnością. Pokazuje ostatnią wersję wdrożoną na GitHub Pages, dlatego po publikacji treści trzeba uruchomić workflow „Deploy to GitHub Pages” i kliknąć „Odśwież” nad podglądem.
 

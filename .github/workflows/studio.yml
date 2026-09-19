@@ -58,3 +58,7 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: node scripts/deploy.mjs
+      - name: Initialize current website content
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: node scripts/seed-content.mjs
