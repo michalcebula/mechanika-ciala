@@ -64,7 +64,7 @@ W dokumencie **Treści strony** znajdziesz:
 - **Opisy zdjęć** — teksty alternatywne zdjęć w poszczególnych miejscach strony.
 - Dane firmy i kontakt, biografię, usługi, kwalifikacje, opinie, ocenę Booksy, politykę prywatności oraz cztery zdjęcia.
 
-Nowy dokument otrzymuje obecną treść strony. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych. Edytuj jeden istniejący dokument; strona wybiera ostatnio zaktualizowany opublikowany dokument „Treści strony”. Nowe pola w starszych dokumentach korzystają z wartości domyślnych, dopóki ich nie uzupełnisz. Nie trzeba tworzyć dokumentu od nowa.
+Studio otwiera bezpośrednio jeden stały dokument „Treści strony”; nie ma osobnego procesu dodawania contentu. Przy pierwszym otwarciu formularz jest wypełniony obecną treścią strony. Kliknij **Publish** raz, aby zapisać ten dokument w Sanity. Od tej chwili każde kolejne wejście służy wyłącznie do edycji tego samego dokumentu. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
 
 Nowa linia w nagłówku dzieli wiersze. Listy można porządkować i usuwać z nich pozycje; pusta lista usuwa ich zawartość ze strony. Usunięcie pola (brak wartości w Sanity) przywraca wartość domyślną. Zapisany pusty tekst pozostaje pusty. Pola dawnych metod i akapitów „Jak pracuję” są zachowane dla zgodności i ukryte; aktualne opisy edytuj w grupie Strona główna.
 
@@ -72,7 +72,7 @@ Zmiany trzeba **opublikować w Studio**, następnie przebudować i wdrożyć str
 
 Konfiguracja Studio: [zmienne środowiskowe Sanity](https://www.sanity.io/docs/studio/environment-variables).
 
-Aktualne połączenie lokalne: projekt `4gf21eo2`, dataset `production` (odczyt API sprawdzony). W chwili konfiguracji dataset nie zawierał dokumentu `siteSettings`. Panel lokalny uruchamia się pod `http://127.0.0.1:3333/`. W Sanity Manage dodaj ten adres jako development host/CORS origin dla panelu z logowaniem, następnie zaloguj się w Studio, utwórz dokument „Treści strony” i kliknij Publish. Do tego czasu budowanie z włączonym CMS zgłasza brak opublikowanego dokumentu. Nie publikuje automatycznie wartości domyślnych w miejsce brakujących danych CMS.
+Aktualne połączenie: projekt `4gf21eo2`, dataset `production`. Panel jest wdrażany przez GitHub Actions na hosting Sanity. Po zalogowaniu otwiera jeden formularz „Treści strony”, wypełniony obecną zawartością. Przy pierwszym użyciu kliknij **Publish**, aby utworzyć stały dokument `siteSettings`. Do tego czasu budowanie z włączonym CMS zgłasza brak opublikowanego dokumentu.
 
 Pliki `.env` pozostają lokalne i nie trafiają do repozytorium. Node 22.12+ jest wymagany również do uruchamiania Studio.
 
@@ -85,7 +85,7 @@ GitHub buduje i wdraża panel na hosting Sanity. Strona pozostaje na GitHub Page
 2. W repozytorium GitHub otwórz **Settings → Secrets and variables → Actions → New repository secret**. Nazwa: `SANITY_AUTH_TOKEN`; wartość: token Sanity. Nie wpisuj go w pliki ani na czacie.
 3. Wyślij commity do GitHuba i uruchom **Actions → Deploy Sanity Studio → Run workflow**. Późniejsze zmiany plików Studio na `main` uruchamiają wdrożenie automatycznie.
 4. Planowany adres: `https://mechanika-ciala-4gf21eo2.sanity.studio`. Dostępność nazwy potwierdzi pierwsze wdrożenie. Jeśli nazwa jest zajęta, ustaw zmienną repozytorium `SANITY_STUDIO_HOST` na inną unikalną nazwę i ponów workflow.
-5. Otwórz panel na urządzeniu z dostępem do konta Sanity, utwórz „Treści strony” i opublikuj dokument.
+5. Otwórz panel na urządzeniu z dostępem do konta Sanity. Formularz „Treści strony” otworzy się automatycznie; sprawdź obecną treść i kliknij **Publish**.
 6. Ustaw zmienne repozytorium `SANITY_PROJECT_ID=4gf21eo2` i `SANITY_DATASET=production`, następnie uruchom **Deploy to GitHub Pages**. Po kolejnych publikacjach treści ponownie uruchamiaj ten workflow. Publikacja treści nie uruchamia go automatycznie.
 
 Workflow Studio jest niezależny od budowania strony, więc można wdrożyć panel przed utworzeniem pierwszego dokumentu. Token jest dostępny tylko w kroku kontroli sekretu i wdrożenia; nie jest zmienną `SANITY_STUDIO_*` ani częścią publicznej konfiguracji.
