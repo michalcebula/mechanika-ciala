@@ -4,7 +4,8 @@ import {defaults} from '../src/lib/defaults';
 
 // Image uploads are Sanity assets; local photos remain website fallbacks.
 const {heroImage, portraitImage, clinicImage, treatmentImage, copy, ...initialContent} = defaults;
-const initialDocument = {...initialContent, ...copy};
+const trainersWithoutImages = initialContent.trainers.map(({image: _image, ...trainer}) => trainer);
+const initialDocument = {...initialContent, trainers: trainersWithoutImages, ...copy};
 function withKeys(value: unknown): unknown {
  if (Array.isArray(value)) return value.map((item, index) => typeof item === 'object' && item !== null ? {...withKeys(item) as object, _key: `item${index}`} : item);
  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, withKeys(item)]));
@@ -54,6 +55,13 @@ export const siteSettings=defineType({
  ...['booksyUrl','googleUrl','facebookUrl'].map(name=>defineField({name,title:({booksyUrl:'Rezerwacja — link Booksy',googleUrl:'Link Google Maps',facebookUrl:'Link Facebook'} as Record<string,string>)[name],type:'url',group:name==='booksyUrl'?'shared':'contact',validation:Rule=>Rule.uri({scheme:['https']})})),
  {...image('heroImage','Zdjęcie główne — terapia'),group:'images'},{...image('portraitImage','Portret Kamila'),group:'images'},{...image('clinicImage','Zdjęcie gabinetu'),group:'images'},{...image('treatmentImage','Kontakt — zdjęcie terapii szyi'),group:'images'},
  {...list('services','Kafelki „W czym pomagam”',[text('title','Tytuł'),text('description','Opis','text')]),group:'home'},
+ {...list('trainers','Trenerzy — kafle współpracy',[
+  text('name','Imię i nazwisko'),
+  text('qualification','Wykształcenie'),
+  text('role','Rola'),
+  defineField({name:'instagramUrl',title:'Instagram — link',type:'url',validation:Rule=>Rule.uri({scheme:['https']})}),
+  image('image','Zdjęcie trenera')
+ ]),group:'home'},
 
  {...list('credentials','Wykształcenie i certyfikaty',[text('title','Kwalifikacja'),text('institution','Organizator / uczelnia'),text('year','Rok')]),group:'about'},
  {...list('reviews','Opinie pacjentów',[text('name','Podpis'),text('text','Treść','text')]),group:'home'},

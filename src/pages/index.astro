@@ -30,6 +30,18 @@ const ratingLabel = rating.toLocaleString('pl-PL', {minimumFractionDigits: 1, ma
       <div><p class="eyebrow light">{c.copy.home.cooperationLabel}</p><h2 id="cooperation-title">{c.copy.home.cooperationTitle}</h2><a class="text-link" href={withBase('/kontakt/')}>{c.copy.home.cooperationLink} <span aria-hidden="true">↗</span></a></div>
       <div class="cooperation-copy">{c.copy.home.cooperationParagraphs.map(p=><p>{p}</p>)}</div>
     </div>
+    {c.trainers.length > 0 && <div class="shell trainer-grid">{c.trainers.map(trainer =>
+      <article class="trainer-card">
+        <img src={trainer.image} alt={`Zdjęcie: ${trainer.name}`} width="720" height="520" loading="lazy" decoding="async" />
+        <div class="trainer-details">
+          <div><h3>{trainer.name}</h3><p>{trainer.qualification}</p><p>{trainer.role}</p></div>
+          <a class="trainer-instagram" href={trainer.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label={`Instagram — ${trainer.name}`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.8" r="1" fill="currentColor"/></svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+      </article>
+    )}</div>}
   </section>
   <section class="section shell about-teaser"><img src={c.portraitImage} alt={c.copy.images.index1} width="600" height="680" loading="lazy" /><div><p class="eyebrow">{c.copy.home.aboutLabel}</p><h2>{c.copy.home.aboutTitle}</h2><p class="lead">{c.biography[0]}</p><a class="text-link" href={withBase('/o-mnie/')}>{c.copy.home.aboutLink} <span aria-hidden="true">↗</span></a></div></section>
   <section class="section shell reviews"><div class="section-heading"><div><p class="eyebrow">{c.copy.home.reviewsLabel}</p><h2>{c.copy.home.reviewsTitle}</h2></div><a class="text-link" href={c.booksyUrl} target="_blank" rel="noopener noreferrer">{c.copy.home.reviewsLink}</a></div>{c.reviews.length>0&&<div class="reviews-grid">{c.reviews.map(r=><blockquote><p>„{r.text}”</p><cite>{r.name}</cite></blockquote>)}</div>}</section>

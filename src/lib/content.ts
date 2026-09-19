@@ -6,7 +6,8 @@ export const fallback = {...defaults,
   heroImage: withBase(defaults.heroImage),
   portraitImage: withBase(defaults.portraitImage),
   clinicImage: withBase(defaults.clinicImage),
-  treatmentImage: withBase(defaults.treatmentImage)
+  treatmentImage: withBase(defaults.treatmentImage),
+  trainers: defaults.trainers.map(trainer => ({...trainer, image: withBase(trainer.image)}))
 };
 export type Content = typeof fallback;
 let cached: Promise<Content> | undefined;
@@ -32,7 +33,8 @@ async function load(): Promise<Content> {
     "heroImage":heroImage.asset->url,
     "portraitImage":portraitImage.asset->url,
     "clinicImage":clinicImage.asset->url,
-    "treatmentImage":treatmentImage.asset->url
+    "treatmentImage":treatmentImage.asset->url,
+    "trainers":trainers[]{..., "image":image.asset->url}
   }`);
   if (!doc) throw new Error('Publish a siteSettings document in Sanity before building.');
   const data = mergeContent(fallback, doc) as Content;
@@ -44,6 +46,9 @@ async function load(): Promise<Content> {
   }
   for (const credential of data.credentials) {
     if (!credential || typeof credential.title !== 'string' || typeof credential.institution !== 'string') throw new Error('Invalid credential in Sanity.');
+  }
+  for (const trainer of data.trainers) {
+    if (!trainer.instagramUrl.startsWith('https://')) throw new Error('Invalid trainer Instagram link in Sanity.');
   }
   if (data.privacyText.some(value => typeof value !== 'string')) throw new Error('Invalid privacy paragraph in Sanity.');
   return data;

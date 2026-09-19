@@ -27,6 +27,22 @@ export const defaults = {
     { title: 'Wsparcie treningu', description: 'Gdy chcesz połączyć fizjoterapię z pracą nad swoją sprawnością.' }
   ],
   methods: [{ title: 'Terapia manualna', description: 'Praca z ciałem dostosowana do badania, Twoich potrzeb i możliwości.' }, { title: 'Współpraca z trenerami', description: 'Fizjoterapia i trening jako uzupełniające się elementy pracy nad sprawnością.' }],
+  trainers: [
+    {
+      name: 'Aleksandra Kobla',
+      qualification: 'magister fizjoterapii',
+      role: 'Trener personalny',
+      instagramUrl: 'https://www.instagram.com/ola.kobla/',
+      image: '/images/trener-aleksandra-placeholder.svg'
+    },
+    {
+      name: 'Aleksander Adamczyk',
+      qualification: 'magister fizjoterapii',
+      role: 'Trener personalny',
+      instagramUrl: 'https://www.instagram.com/train_and_move/',
+      image: '/images/trener-aleksander-placeholder.svg'
+    }
+  ],
   credentials: [] as { title: string; institution: string; year?: string }[],
   // Verified against the public Booksy profile on 2026-09-07; update manually or through Sanity.
   reviews: [] as { name: string; text: string }[], rating: '5.0', reviewCount: '81',

@@ -62,7 +62,7 @@ W dokumencie **Treści strony** znajdziesz:
 
 - **Treści podstron, menu i stopki** — nagłówki, akapity, etapy pracy, podpisy, przyciski, etykiety menu oraz tytuły i opisy SEO.
 - **Opisy zdjęć** — teksty alternatywne zdjęć w poszczególnych miejscach strony.
-- Dane firmy i kontakt, biografię, usługi, kwalifikacje, opinie, ocenę Booksy, politykę prywatności oraz cztery zdjęcia.
+- Dane firmy i kontakt, biografię, usługi, trenerów współpracujących, kwalifikacje, opinie, ocenę Booksy, politykę prywatności oraz zdjęcia.
 
 Studio otwiera bezpośrednio jeden stały dokument „Mechanika Ciała — treści”; nie ma osobnego procesu dodawania contentu. Workflow wdrażający Studio jednorazowo tworzy ten dokument z obecną zawartością strony, jeśli jeszcze nie istnieje. Następne wdrożenia nie nadpisują zmian redakcyjnych. Formularz jest podzielony na jednoznaczne zakładki odpowiadające podstronom i wspólnym elementom. Zdjęcia lokalne pozostają domyślne, dopóki nie prześlesz własnych.
 

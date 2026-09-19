@@ -5,7 +5,7 @@ export function mergeContent(defaults, published, path = 'content') {
     if (!Array.isArray(published)) throw new Error(`Expected list: ${path}`);
     return published.map((item, index) => {
       if (item === null || item === undefined) throw new Error(`Invalid list item: ${path}[${index}]`);
-      if (defaults.length) return mergeContent(defaults[0], item, `${path}[${index}]`);
+      if (defaults.length) return mergeContent(defaults[index] ?? defaults[0], item, `${path}[${index}]`);
       return item;
     });
   }

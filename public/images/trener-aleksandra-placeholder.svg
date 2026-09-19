@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title description">
+  <title id="title">Placeholder zdjęcia Aleksandry Kobli</title>
+  <desc id="description">Neutralna grafika zastępcza z inicjałami AK.</desc>
+  <rect width="720" height="480" fill="#dfe5da"/>
+  <circle cx="360" cy="205" r="76" fill="#123c33" opacity=".16"/>
+  <path d="M206 480c15-99 70-157 154-157s139 58 154 157" fill="#123c33" opacity=".16"/>
+  <text x="360" y="438" text-anchor="middle" fill="#123c33" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="6">AK</text>
+</svg>

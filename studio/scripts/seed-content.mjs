@@ -36,13 +36,20 @@ const {
   copy,
   ...contentDefaults
 } = defaults;
-const seed = withKeys({...contentDefaults, ...copy});
+const trainers = contentDefaults.trainers.map(({image, ...trainer}) => trainer);
+const seed = withKeys({...contentDefaults, trainers, ...copy});
 const documents = await client.fetch('*[_id in $ids]', {ids: ['siteSettings', 'drafts.siteSettings']});
 const published = documents.find(document => document._id === 'siteSettings');
 const draft = documents.find(document => document._id === 'drafts.siteSettings');
 
 if (published) {
-  console.log('Current site content already exists; leaving editor values unchanged.');
+  const addMissingFields = async document => {
+    const missing = Object.fromEntries(Object.entries(seed).filter(([key]) => document[key] === undefined || document[key] === null));
+    if (Object.keys(missing).length) await client.patch(document._id).setIfMissing(missing).commit();
+  };
+  await addMissingFields(published);
+  if (draft) await addMissingFields(draft);
+  console.log('Added newly available fields while leaving existing editor values unchanged.');
 } else {
   const content = mergeMissing(seed, editableFields(draft));
   await client.createOrReplace({_id: 'siteSettings', _type: 'siteSettings', ...content});
