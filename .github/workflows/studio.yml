@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths:
       - 'studio/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
       - 'src/lib/defaults.ts'
       - 'src/lib/editorial.json'
       - '.github/workflows/studio.yml'
@@ -34,7 +37,9 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: studio/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
       - name: Check deployment secret
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
@@ -43,7 +48,12 @@ jobs:
             echo '::error::Add SANITY_AUTH_TOKEN in repository Settings > Secrets and variables > Actions.'
             exit 1
           fi
-      - run: npm ci
+      # Shared defaults live under the Astro tsconfig, so Vite must resolve Astro.
+      - name: Install website dependencies for shared content
+        working-directory: .
+        run: npm ci
+      - name: Install Studio dependencies
+        run: npm ci
       - name: Deploy editor to Sanity hosting
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
