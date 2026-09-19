@@ -28,8 +28,8 @@ jobs:
       - name: Build Astro site
         uses: withastro/action@v6
         env:
-          SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
-          SANITY_DATASET: ${{ vars.SANITY_DATASET }}
+          SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID || '4gf21eo2' }}
+          SANITY_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
           SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
 
