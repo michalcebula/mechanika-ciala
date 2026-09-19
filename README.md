@@ -75,3 +75,17 @@ Konfiguracja Studio: [zmienne środowiskowe Sanity](https://www.sanity.io/docs/s
 Aktualne połączenie lokalne: projekt `4gf21eo2`, dataset `production` (odczyt API sprawdzony). W chwili konfiguracji dataset nie zawierał dokumentu `siteSettings`. Panel lokalny uruchamia się pod `http://127.0.0.1:3333/`. W Sanity Manage dodaj ten adres jako development host/CORS origin dla panelu z logowaniem, następnie zaloguj się w Studio, utwórz dokument „Treści strony” i kliknij Publish. Do tego czasu budowanie z włączonym CMS zgłasza brak opublikowanego dokumentu. Nie publikuje automatycznie wartości domyślnych w miejsce brakujących danych CMS.
 
 Pliki `.env` pozostają lokalne i nie trafiają do repozytorium. Node 22.12+ jest wymagany również do uruchamiania Studio.
+
+### Studio online przez GitHub Actions (docelowy sposób pracy)
+
+Logowanie do Sanity na komputerze z kodem ani lokalny CORS nie są potrzebne.
+GitHub buduje i wdraża panel na hosting Sanity. Strona pozostaje na GitHub Pages.
+
+1. W Sanity Manage projektu `4gf21eo2` utwórz token do wdrażania Studio zgodnie z sekcją [Authorize studio deployments](https://www.sanity.io/docs/studio/deployment#authorize-studio-deployments).
+2. W repozytorium GitHub otwórz **Settings → Secrets and variables → Actions → New repository secret**. Nazwa: `SANITY_AUTH_TOKEN`; wartość: token Sanity. Nie wpisuj go w pliki ani na czacie.
+3. Wyślij commity do GitHuba i uruchom **Actions → Deploy Sanity Studio → Run workflow**. Późniejsze zmiany plików Studio na `main` uruchamiają wdrożenie automatycznie.
+4. Planowany adres: `https://mechanika-ciala-4gf21eo2.sanity.studio`. Dostępność nazwy potwierdzi pierwsze wdrożenie. Jeśli nazwa jest zajęta, ustaw zmienną repozytorium `SANITY_STUDIO_HOST` na inną unikalną nazwę i ponów workflow.
+5. Otwórz panel na urządzeniu z dostępem do konta Sanity, utwórz „Treści strony” i opublikuj dokument.
+6. Ustaw zmienne repozytorium `SANITY_PROJECT_ID=4gf21eo2` i `SANITY_DATASET=production`, następnie uruchom **Deploy to GitHub Pages**. Po kolejnych publikacjach treści ponownie uruchamiaj ten workflow. Publikacja treści nie uruchamia go automatycznie.
+
+Workflow Studio jest niezależny od budowania strony, więc można wdrożyć panel przed utworzeniem pierwszego dokumentu. Token jest dostępny tylko w kroku kontroli sekretu i wdrożenia; nie jest zmienną `SANITY_STUDIO_*` ani częścią publicznej konfiguracji.
