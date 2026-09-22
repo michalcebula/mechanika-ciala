@@ -33,14 +33,14 @@ export const defaults = {
       qualification: 'magister fizjoterapii',
       role: 'Trener personalny',
       instagramUrl: 'https://www.instagram.com/ola.kobla/',
-      image: '/images/trener-aleksandra-placeholder.svg'
+      image: '/images/trener-aleksandra.webp'
     },
     {
       name: 'Aleksander Adamczyk',
       qualification: 'magister fizjoterapii',
       role: 'Trener personalny',
       instagramUrl: 'https://www.instagram.com/train_and_move/',
-      image: '/images/trener-aleksander-placeholder.svg'
+      image: '/images/trener-aleksander.webp'
     }
   ],
   credentials: [] as { title: string; institution: string; year?: string }[],
