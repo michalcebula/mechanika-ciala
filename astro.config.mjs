@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 
+const customSite = process.env.SITE_URL?.trim().replace(/\/+$/, '');
+
 export default defineConfig({
-  site: 'https://michalcebula.github.io',
-  base: '/mechanika-ciala',
+  site: customSite || 'https://michalcebula.github.io',
+  base: customSite ? '/' : '/mechanika-ciala',
 });
