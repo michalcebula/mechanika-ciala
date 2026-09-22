@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import type {UserViewComponent} from 'sanity/structure';
 
-const siteUrl = 'https://michalcebula.github.io/mechanika-ciala';
+const siteUrl = (process.env.SANITY_STUDIO_SITE_URL || 'https://michalcebula.github.io/mechanika-ciala').replace(/\/$/, '');
 const pages = [
   {label: 'Start', path: '/'},
   {label: 'O mnie', path: '/o-mnie/'},

@@ -31,6 +31,7 @@ jobs:
       SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID || '4gf21eo2' }}
       SANITY_STUDIO_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
       SANITY_STUDIO_HOST: ${{ vars.SANITY_STUDIO_HOST || 'mechanika-ciala-4gf21eo2' }}
+      SANITY_STUDIO_SITE_URL: ${{ vars.SITE_URL || 'https://michalcebula.github.io/mechanika-ciala' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
