@@ -9,7 +9,7 @@ const isCurrentPage = (url: string) => path.replace(/\/$/, '') === url.replace(/
 const nav = [{url:'/',label:c.copy.shared.navHome},{url:'/#jak-pomagam',label:c.copy.shared.navHelp},{url:'/o-mnie/',label:c.copy.shared.navAbout},{url:'/kontakt/',label:c.copy.shared.navContact}].map(n => ({ ...n, url: withBase(n.url) }));
 ---
     <header class="header"><div class="shell nav-wrap">
-      <a class="brand" href={withBase('/')} aria-label={`${c.name} — strona główna`}>{c.name}<span>{c.copy.shared.brandSubtitle}</span></a>
+      <a class="brand nav-brand" href={withBase('/')} aria-label={`${c.name} — strona główna`}><img class="nav-logo" src={withBase('/images/logo-mechanika-ciala.png')} width="864" height="159" alt="" /></a>
       <nav class="desktop-nav" aria-label="Menu główne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}</nav>
       <a class="button nav-cta" href={booksyUrl} target="_blank" rel="noopener noreferrer">{c.copy.shared.navBookingLabel} <ArrowUpRight /></a>
       <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Menu mobilne">{nav.map(n=><a data-nav-link href={n.url} aria-current={isCurrentPage(n.url)?'page':undefined}>{n.label}</a>)}<a href={booksyUrl} target="_blank" rel="noopener noreferrer">{c.copy.shared.navBookingLabel} <ArrowUpRight /></a></nav></details>
