@@ -38,8 +38,9 @@ export const SitePreview: UserViewComponent = () => {
         <button type="button" onClick={() => setRefresh(value => value + 1)} style={{marginLeft: 'auto', border: '1px solid #ccc', borderRadius: 4, padding: '8px 12px', cursor: 'pointer', background: 'white'}}>
           Odśwież
         </button>
-        <a href={url} target="_blank" rel="noreferrer" style={{color: '#123c33', fontWeight: 600}}>
-          Otwórz osobno ↗
+        <a href={url} target="_blank" rel="noreferrer" style={{display: 'inline-flex', alignItems: 'center', gap: 5, color: '#123c33', fontWeight: 600}}>
+          Otwórz osobno
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </a>
       </div>
       <p style={{margin: 0, padding: '8px 12px', background: '#fff8dc', borderBottom: '1px solid #e5d79c', fontSize: 13}}>

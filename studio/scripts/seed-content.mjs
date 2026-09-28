@@ -43,13 +43,23 @@ const published = documents.find(document => document._id === 'siteSettings');
 const draft = documents.find(document => document._id === 'drafts.siteSettings');
 
 if (published) {
-  const addMissingFields = async document => {
+  const syncDocument = async document => {
     const missing = Object.fromEntries(Object.entries(seed).filter(([key]) => document[key] === undefined || document[key] === null));
-    if (Object.keys(missing).length) await client.patch(document._id).setIfMissing(missing).commit();
+    let patch = client.patch(document._id);
+    let changed = false;
+    if (Object.keys(missing).length) {
+      patch = patch.setIfMissing(missing);
+      changed = true;
+    }
+    if (String(document.reviewCount) === '81') {
+      patch = patch.set({reviewCount: '86'});
+      changed = true;
+    }
+    if (changed) await patch.commit();
   };
-  await addMissingFields(published);
-  if (draft) await addMissingFields(draft);
-  console.log('Added newly available fields while leaving existing editor values unchanged.');
+  await syncDocument(published);
+  if (draft) await syncDocument(draft);
+  console.log('Synchronized newly available fields and requested content updates.');
 } else {
   const content = mergeMissing(seed, editableFields(draft));
   await client.createOrReplace({_id: 'siteSettings', _type: 'siteSettings', ...content});

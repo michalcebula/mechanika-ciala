@@ -44,7 +44,7 @@ export const defaults = {
     }
   ],
   credentials: [] as { title: string; institution: string; year?: string }[],
-  // Verified against the public Booksy profile on 2026-09-07; update manually or through Sanity.
-  reviews: [] as { name: string; text: string }[], rating: '5.0', reviewCount: '81',
+  // Updated from the current Booksy review count on 2026-09-28; update manually or through Sanity.
+  reviews: [] as { name: string; text: string }[], rating: '5.0', reviewCount: '86',
   privacyApproved: false, privacyText: [] as string[]
 };
